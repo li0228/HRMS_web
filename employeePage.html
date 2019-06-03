@@ -1,0 +1,358 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+      <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+
+    <title>员工管理页面</title>
+</head>
+<body>
+<div class="hrms_container">
+    <!-- 导航条 -->
+    <div class="hrms_brand_nav">
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#hrms-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">XXX公司LOGO</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="hrms-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">公司介绍 <span class="sr-only">(current)</span>  </a>
+                    </li>
+                    <li><a href="#">人力资源部</a></li>
+                    <li><a href="#">请假申请</a></li>
+                    <li><a href="#">报销申请</a></li>
+                    <li><a href="#">出勤记录</a></li>
+                </ul>
+
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="站内搜索">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">账号管理 <span class="caret"></span></a>
+                        <ul class="dropdown-menu nav nav-pills nav-stacked">
+                            <li class="active"><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 修改信息</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 头像更换</a></li>
+                            <li class="hrms_logout"><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> 账号退出</a></li>
+                        </ul>
+                    </li>
+                </ul><!-- /.nav navbar-nav navbar-right -->
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div><!-- /.hrms_brand_nav -->
+
+    <!-- 中间部分（包括左边栏和员工/部门表单显示部分） -->
+    <div class="hrms_body" style="position:relative; top:-15px;">
+
+        <!-- 左侧栏 -->
+       <div class="panel-group col-sm-2" id="hrms_sidebar_left" role="tablist" aria-multiselectable="true">
+    <ul class="nav nav-pills nav-stacked emp_sidebar">
+        <li role="presentation" class="active">
+            <a href="#" data-toggle="collapse" data-target="#collapse_emp">
+                <span class="glyphicon glyphicon-user" aria-hidden="true">员工管理</span>
+            </a>
+            <ul class="nav nav-pills nav-stacked" id="collapse_emp">
+                <li role="presentation"><a href="#">员工信息</a></li>
+                <li role="presentation"><a href="#">员工新增</a></li>
+                <li role="presentation"><a href="#">员工清零</a></li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="nav nav-pills nav-stacked dept_sidebar">
+        <li role="presentation" class="active">
+            <a href="#"  data-toggle="collapse" data-target="#collapse_dept">
+                <span class="glyphicon glyphicon-cloud" aria-hidden="true">部门管理</span>
+            </a>
+            <ul class="nav nav-pills nav-stacked" id="collapse_dept">
+                <li role="presentation"><a href="#">部门信息</a></li>
+                <li role="presentation"><a href="#">部门新增</a></li>
+                <li role="presentation"><a href="#">部门清零</a></li>
+            </ul>
+        </li>
+    </ul>
+
+</div><!-- /.panel-group，#hrms_sidebar_left -->
+
+        <!-- 中间员工表格信息展示内容 -->
+        <div class="emp_info col-sm-10">
+
+            <div class="panel panel-success">
+                <!-- 路径导航 -->
+                <div class="panel-heading">
+                    <ol class="breadcrumb">
+                        <li><a href="#">员工管理</a></li>
+                        <li class="active">员工信息</li>
+                    </ol>
+                </div>
+                <!-- Table -->
+                <table class="table table-bordered table-hover" id="emp_table">
+                    <thead>
+                    <th>员工编号</th>
+                    <th>员工姓名</th>
+                    <th>邮箱</th>
+                    <th>性别</th>
+                    <th>部门</th>
+                    <th>操作</th>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${employees}" var="emp">
+                            <tr>
+                                <td>${emp.empId}</td>
+                                <td>${emp.empName}</td>
+                                <td>${emp.empEmail}</td>
+                                <td>${emp.gender == "F"? "女": "男"}</td>
+                                <td>${emp.department.deptName}</td>
+                                <td>
+                                    <a href="#" role="button" class="btn btn-primary emp_edit_btn" data-toggle="modal" data-target=".emp-update-modal">编辑</a>
+                                    <a href="#" role="button" class="btn btn-danger emp_delete_btn">删除</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+
+                <div class="panel-body">
+                    <div class="table_items">
+                        当前第<span class="badge">${curPage}</span>页，共有<span class="badge">${totalPages}</span>页，总记录数<span class="badge">${totalItems}</span>条。
+                    </div>
+                    <nav aria-label="Page navigation" class="pull-right">
+                        <ul class="pagination">
+                            <li><a href="/hrms/emp/getEmpList?pageNo=1">首页</a></li>
+                            <c:if test="${curPage==1}">
+                                <li class="disabled">
+                                    <a href="#" aria-label="Previous" class="prePage">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${curPage!=1}">
+                                <li>
+                                    <a href="#" aria-label="Previous" class="prePage">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            </c:if>
+
+                            <c:forEach begin="1" end="${totalPages<5?totalPages:5}" step="1" var="itemPage">
+                                <c:if test="${curPage == itemPage}">
+                                    <li class="active"><a href="/hrms/emp/getEmpList?pageNo=${itemPage}">${itemPage}</a></li>
+                                </c:if>
+                                <c:if test="${curPage != itemPage}">
+                                    <li><a href="/hrms/emp/getEmpList?pageNo=${itemPage}">${itemPage}</a></li>
+                                </c:if>
+                            </c:forEach>
+
+                            <c:if test="${curPage==totalPages}">
+                                <li class="disabled" class="nextPage">
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${curPage!=totalPages}">
+                                <li>
+                                    <a href="#" aria-label="Next" class="nextPage">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <li><a href="/hrms/emp/getEmpList?pageNo=${totalPages}">尾页</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div><!-- /.panel panel-success -->
+        </div><!-- /.emp_info -->
+
+
+        <!-- 尾部 -->
+       <!-- 尾部 -->
+<div class="hrms_footer" style="text-align: center;">
+    <address>
+        <strong>Copyright&copy;XXX公司.Inc</strong><br>
+
+        <abbr title="Phone">P:</abbr> (123) 456-7890
+    </address>
+</div><!-- /.hrms_footer -->
+</div><!-- /.hrms_body -->
+</div><!-- /.container -->
+
+<div class="modal fade emp-add-modal" tabindex="-1" role="dialog" aria-labelledby="emp-add-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">员工新增</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal add_emp_form">
+                    <div class="form-group">
+                        <label for="add_inputName" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="empName" class="form-control" id="add_inputName" placeholder="如：张三">
+                            <span id="helpBlock_add_inputName" class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="add_inputEmail" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-8">
+                            <input type="email" name="empEmail" class="form-control" id="add_inputEmail" placeholder="zs@qq.com">
+                            <span id="helpBlock_add_inputEmail" class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                                <input type="radio" checked="checked" name="gender" id="add_inputGender1" value="M"> 男
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" id="add_inputGender2" value="F"> 女
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="add_department" class="col-sm-2 control-label">部门</label>
+                        <div class="col-sm-8">
+                            <div class="checkbox">
+                                <select class="form-control" name="departmentId" id="add_department">
+                                   <%-- <option value="1">CEO</option>--%>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary emp_save_btn">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade emp-update-modal" tabindex="-1" role="dialog" aria-labelledby="emp-update-modal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">员工更改</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal update_emp_form">
+                                    <div class="form-group">
+                                        <label  for="update_static_empName" class="col-sm-2 control-label">姓名</label>
+                                        <div class="col-sm-8">
+                                            <p class="form-control-static" id="update_static_empName"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="update_empEmail" class="col-sm-2 control-label">邮箱</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" name="empEmail" class="form-control" id="update_empEmail">
+                                            <span id="helpBlock_update_inputEmail" class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">性别</label>
+                                        <div class="col-sm-8">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="gender" id="update_empGender1" value="M"> 男
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="gender" id="update_empGender2" value="F"> 女
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="update_department" class="col-sm-2 control-label">部门</label>
+                                        <div class="col-sm-8">
+                                            <div class="checkbox">
+                                                <select class="form-control" name="departmentId" id="update_department">
+                                                    <%-- <option value="1">CEO</option>--%>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary emp_update_btn">保存</button>
+                            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+    $(function () {
+        //上一页
+        var curPage = ${curPage};
+        var totalPages = ${totalPages};
+        $(".prePage").click(function () {
+            if (curPage > 1){
+                var pageNo = curPage-1;
+                $(this).attr("href", "/hrms/emp/getEmpList?pageNo="+pageNo);
+            }
+        });
+        //下一页
+        $(".nextPage").click(function () {
+            if (curPage < totalPages){
+                var pageNo = curPage+1;
+                $(this).attr("href", "/hrms/emp/getEmpList?pageNo="+pageNo);
+            }
+        });
+    })
+
+    <!-- ==========================员工删除操作=================================== -->
+    $(".emp_delete_btn").click(function () {
+        var curPage = ${curPage};
+        var delEmpId = $(this).parent().parent().find("td:eq(0)").text();
+        var delEmpName = $(this).parent().parent().find("td:eq(1)").text();
+        if (confirm("确认删除【" + delEmpName+ "】的信息吗？")){
+            $.ajax({
+                url:"/hrms/emp/deleteEmp/"+delEmpId,
+                type:"DELETE",
+                success:function (result) {
+                    if (result.code == 100){
+                        alert("删除成功！");
+                        window.location.href="/hrms/emp/getEmpList?pageNo="+curPage;
+                    }else {
+                        alert(result.extendInfo.emp_del_error);
+                    }
+                }
+            });
+        }
+    });
+
+
+</script>
+</body>
+</html>
